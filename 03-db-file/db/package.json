@@ -1,0 +1,19 @@
+{
+  "name": "db",
+  "version": "1.0.0",
+  "description": "Mein DB_Beispiel",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "toll",
+    "mega",
+    "super"
+  ],
+  "author": "ich",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^11.5.0"
+  }
+}
