@@ -7,5 +7,6 @@ const getAllKunden = db.prepare('SELECT * FROM kunde WHERE vorname=?')
 const kunden = getAllKunden.all('Takuma')
 
 console.log(kunden)
+//console.log(kunden[0].automarke)
 
 db.close()
