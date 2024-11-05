@@ -8,29 +8,31 @@
     </title>
   </head>
   <body>
-    <h1>{{ gruss }}</h1>
-    Wie stehts?
-    <p>
-      meine Zahl: {{ 35+7 }}
-    </p>
-    Wieder {{ wochentag }}.
-    Zeit: {{ zeit }}
-    <h2>Namensliste</h2>
-    {{ namen[0]}}-{{ namen[1]}}-{{ namen[2]}}
-    <ul>
-    @each(name in namen)
-    
-      <li>{{ name }}</li>
+    @if(isLoggedIn)
+        <h1>{{ gruss }}</h1>
+        Wie stehts?
+        <p>
+          meine Zahl: {{ 35+7 }}
+        </p>
+        Wieder {{ wochentag }}.
+        Zeit: {{ zeit }}
+        <h2>Namensliste</h2>
+        {{ namen[0]}}-{{ namen[1]}}-{{ namen[2]}}
+        <ul>
+        @each(name in namen)
+        
+          <li>{{ name }}</li>
 
-    @end
-  </ul>
-    <h2>Mehr Namen</h2>
-    <ul>
-    @each((person, index) in personen)
-    <li>{{ index+1 }}. {{ person.vorname}} {{person.nachname }}</li>
-    @end
-    </ul>
-
-  
+        @end
+      </ul>
+        <h2>Mehr Namen</h2>
+        <ul>
+        @each((person, index) in personen)
+        <li>{{ index+1 }}. {{ person.vorname}} {{person.nachname }}</li>
+        @end
+        </ul>
+      @else
+          Bitte einloggen!
+      @end  
   </body>
 </html>
