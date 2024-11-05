@@ -4,8 +4,11 @@ const db = new Database('kunde.sqlite')
 
 const getAllKunden = db.prepare('SELECT * FROM kunde WHERE vorname=?')
 
-const kunden = getAllKunden.all('Takuma')
+let kunden = getAllKunden.all('Takuma')
 
+console.log(kunden)
+
+kunden = getAllKunden.all('Palina')
 console.log(kunden)
 //console.log(kunden[0].automarke)
 
