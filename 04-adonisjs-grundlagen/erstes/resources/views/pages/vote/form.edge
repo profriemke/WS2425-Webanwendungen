@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Abstimmung</h1>
+    <p>Wie findest Du Pizza?</p>
+
+    <form action='/vote/count' method="post">
+        {{ csrfField() }}
+        <input type="radio" name="vote" id="spitze" value="spitze">
+        <label for="spitze">spitze</label>
+        <input type="radio" name="vote" id="gehtso" value="gehtso">
+        <label for="gehtso">geht so</label>
+        <input type="radio" name="vote" id="keinesfalls" value="keinesfalls">
+        <label for="keinesfalls">auf gar keinen Fall!</label>
+        <input type="submit">
+    </form>
+    
+</body>
+</html>
