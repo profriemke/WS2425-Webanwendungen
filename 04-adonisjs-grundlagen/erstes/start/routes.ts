@@ -8,6 +8,7 @@
 */
 
 import router from '@adonisjs/core/services/router'
+import db from '@adonisjs/lucid/services/db'
 
 let counter = 0
 
@@ -17,20 +18,32 @@ let votes = {
     keinesfalls: 0
 }
 
-router.get('/vote/view', async ({ view })=>{
+router.get('/kunden', async ({ view }) => {
+
+    const kunden = await db.from('kunde')
+        .select('anrede', 'kundennr', 'vorname', 'nachname')
+        .where({ ort: 'Stuttgart', anrede: 'Frau' })
+        .limit(10)
+    return view.render('pages/kunden', { kunden:kunden })
+    // return kunden
+
+})
+
+
+router.get('/vote/view', async ({ view }) => {
     return view.render('pages/vote/view', votes)
 
 })
 
-router.post('/vote/count', async ({ view, request })=>{
+router.post('/vote/count', async ({ view, request }) => {
     console.log(request.input('vote'))
-    if(request.input('vote') == "gehtso"){
+    if (request.input('vote') == "gehtso") {
         votes.gehtso++
     }
-    if(request.input('vote') == "spitze" ){
+    if (request.input('vote') == "spitze") {
         votes.spitze++
     }
-    if(request.input('vote') == "keinesfalls"){
+    if (request.input('vote') == "keinesfalls") {
         votes.keinesfalls++
     }
     console.log(votes)
@@ -38,7 +51,7 @@ router.post('/vote/count', async ({ view, request })=>{
 
 })
 
-router.get('/vote', async ({ view })=>{
+router.get('/vote', async ({ view }) => {
     return view.render('pages/vote/form')
 })
 
