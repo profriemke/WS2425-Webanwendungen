@@ -1,0 +1,13 @@
+<header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/ueber">Über mich</a></li>
+            @if(session.get('firstname') == undefined)
+            <li><a href="/admin/login">Login</a></li>              
+            @else
+            <li><a href="/admin/logout">Logout</a></li> 
+            @end
+        </ul>
+    </nav>
+</header>

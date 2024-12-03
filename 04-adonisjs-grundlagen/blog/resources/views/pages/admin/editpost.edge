@@ -1,0 +1,16 @@
+@let(pageTitle= 'Post erstellen')
+@include('partials/head')
+<body>
+    @include('partials/header')
+    <h1>Post editieren</h1>
+    <form action="/admin/post/edit/" method="post">
+        {{ csrfField() }}
+        <input type="hidden" name="id" value="{{ id }}">
+        <input type="text" name="title" value="{{ title }}"><br>
+        <textarea  name="teaser">{{ teaser }}</textarea><br>
+        <textarea name="text">{{ text }}</textarea><br>
+        <input type="submit" value="Änderungen speichern">
+    </form>
+    @include('partials/footer')
+</body>
+</html>

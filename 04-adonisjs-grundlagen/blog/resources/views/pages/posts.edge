@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+@let(pageTitle= title)
+@include('partials/head')
 <body>
+    @include('partials/header')
     <h1>{{ title }}</h1>
-    <p>von: {{ author }} am {{ date }}</p>
+    <p>von: {{ firstname }}  {{ lastname }} am {{ date }}</p>
     <p>{{ text }}</p>
     <a href="/">zurück</a>
-    
+    @if(session.get('login') != undefined)
+        <a href="/admin/post/edit/{{id}}">editieren</a>
+    @end
+    @include('partials/footer')
 </body>
 </html>

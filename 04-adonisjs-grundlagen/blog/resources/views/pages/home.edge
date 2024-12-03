@@ -1,26 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
+@let(pageTitle= 'Home')
+@include('partials/head')
 <body>
-
+ @include('partials/header')
   <h1>Mein Blog</h1>
-  @if(firstname != undefined)
-    Hallo {{ firstname }}<br>
+  @if(session.get('firstname') != undefined)
+    Hallo {{ session.get('firstname')  }}<br>
    <a href="/admin/post/create">neuer Beitrag</a><br>
-   <a href="/admin/logout">abmelden</a>
-  @else
-    <a href="/admin/login">anmelden</a>
   @end
   @each(post in posts)
 
   <h2>{{ post.title }}</h2>
   <p>{{ post.teaser }} <a href="/posts/{{ post.id }}">mehr...</a></p>
- 
   @end
+  @include('partials/footer')
 </body>
 </html>

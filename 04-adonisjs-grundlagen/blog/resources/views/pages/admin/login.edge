@@ -1,18 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
-</head>
+@let(pageTitle= 'Login')
+@include('partials/head')
 <body>
-    <h1>Login</h1>
+    @include('partials/header')
+    <h1>Login</h1>  
+    @if(error != undefined)
+      <span style="color:red; font-weight: bold;">{{ error }}</span>
+    @end
     <form action='/admin/login' method="post">
         {{ csrfField() }}
         <input type="text" name="login" placeholder="Dein Login">  <br>
         <input type="password" name="password" placeholder="Dein Passwort"><br>
         <input type="submit" value="anmelden">  
     </form>
+    @include('partials/footer')
 </body>
 </html>
