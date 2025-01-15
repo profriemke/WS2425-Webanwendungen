@@ -4,6 +4,11 @@
     @include('partials/header')
     <h1>{{ title }}</h1>
     <p>von: {{ firstname }}  {{ lastname }} am {{ date }}</p>
+    <p>
+      @if(key != NULL)
+      <img src="{{await driveUrl(key, 'fs')}}" width="200">
+      @end  
+    </p>
     <p>{{ text }}</p>
     <a href="/">zurück</a>
     @if(session.get('login') != undefined)

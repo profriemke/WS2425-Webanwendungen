@@ -10,11 +10,12 @@
 <body>
     @include('partials/header')
     <h1>Post erstellen</h1>
-    <form action="/admin/post/create" method="post">
+    <form action="/admin/post/create" method="post" enctype="multipart/form-data"  >
         {{ csrfField() }}
         <input type="text" name="title"><br>
         <textarea  name="teaser"></textarea><br>
         <textarea name="text"></textarea><br>
+        <input type="file" name="image"><br>
         <input type="submit" value="Post erstellen">
     </form>
     @include('partials/footer')

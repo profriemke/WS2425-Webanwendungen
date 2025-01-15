@@ -9,28 +9,15 @@
 
 import router from '@adonisjs/core/services/router'
 import db from '@adonisjs/lucid/services/db'
+import drive from '@adonisjs/drive/services/main'
 import hash from '@adonisjs/core/services/hash'
+import { cuid } from '@adonisjs/core/helpers'
+const PostsController = ()=> import('#controllers/posts_controller')
 
-router.post('/admin/post/edit', async ({ request, response, session }) => {
-    if (session.get('login') === undefined) {
-        response.redirect('/admin/login')
-    }
-    const result = await db.from('posts')
-        .where({ id: request.input('id') })
-        .update(
-            {
-                title: request.input('title'),
-                teaser: request.input('teaser'),
-                text: request.input('text'),
-                date: new Date().toLocaleDateString()
-            }
-        )
-    if (!result) {
-        return 'Fehler'
-    }
-    console.log(result)
-    return response.redirect('/posts/' + request.input('id'))
-})
+router.get('/', [PostsController, 'home'])
+router.post('/admin/post/edit', [PostsController, 'edit'])
+router.post('/admin/post/create', [PostsController, 'create'] )
+
 
 router.get('/admin/post/edit/:id', async ({ params, view, session, response }) => {
     if (session.get('login') === undefined) {
@@ -75,12 +62,6 @@ router.get('/admin/logout', async ({ session, response }) => {
 })
 
 
-router.get('/', async ({ view }) => {
-    const posts = await db.from('posts')
-        .select('*')
-        .orderBy('id', 'desc')
-    return view.render('pages/home', { posts: posts })
-})
 
 router.get('/posts/:id', async ({ view, params }) => {
     const post = await db.from('posts')
@@ -110,30 +91,22 @@ router.get('/admin/post/create', async ({ view, session, response }) => {
     return view.render('pages/admin/createpost')
 })
 
-router.post('/admin/post/create', async ({ request, response, session }) => {
-    if (session.get('login') === undefined) {
-        response.redirect('/admin/login')
-    }
-    try {
-        const result = await db.table('posts').insert(
-            {
-                title: request.input('title'),
-                teaser: request.input('teaser'),
-                text: request.input('teaser'),
-                author: session.get('login'),
-                date: new Date().toLocaleDateString()
-            }
-        )
-        if (!result) {
-            return 'Fehler!'
-        }
-    } catch (error) {
-        return 'Fehler beim Eintragen'
-    }
-    return response.redirect('/')
+
+
+// Demos
+
+router.get('/uploaddemo', async ({view})=>{
+    return view.render('pages/uploaddemoform')
 })
-
-
+router.post('/uploaddemo', async({request,response})=>{
+    const image = request.file('demofile', {size:'10mb', extnames:['jpg','png']})
+    if(!image?.isValid){
+        return 'Fehler '+image?.errors
+    }
+    const key = `uploads/${cuid()}.${image.extname}`
+    await image.moveToDisk(key, 'fs')
+    return { message: 'hochgeladen', url: await drive.use('fs').getUrl(key)}
+})
 router.get('/cookiedemo/a', async ({ session }) => {
     session.put('text', 'Riemke war da')
     return 'Wert gesetzt';
