@@ -125,3 +125,8 @@ router.get('/hash', async () => {
     console.log(hashedPw)
     return await hash.verify(hashedPw, '123')
 });
+
+router.get('/context', async ( ctx ) => {
+
+    return ctx
+});

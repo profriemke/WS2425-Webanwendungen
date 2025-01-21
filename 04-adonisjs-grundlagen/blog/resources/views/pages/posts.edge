@@ -6,7 +6,7 @@
     <p>von: {{ firstname }}  {{ lastname }} am {{ date }}</p>
     <p>
       @if(key != NULL)
-      <img src="{{await driveUrl(key, 'fs')}}" width="200">
+      <img src="{{await driveSignedUrl(key, 'fs')}}" width="200">
       @end  
     </p>
     <p>{{ text }}</p>

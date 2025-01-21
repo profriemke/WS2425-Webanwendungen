@@ -8,6 +8,7 @@ export default class PostsController {
             response.redirect('/admin/login')
         }
         const image = request.file('image', {size:'10mb', extnames:['jpg','png']})
+        
         if(!image?.isValid){
             return image?.errors
         }
