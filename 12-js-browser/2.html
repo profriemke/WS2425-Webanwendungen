@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Überschrift</h1>
+    <img src="4.jpg" width="200"alt="tier"><br>
+
+    <button onclick="$('h1').hide()">ausblenden</button>
+    <button onclick="$('h1').show()">einblenden</button>
+    <button onclick="$('h1').toggle()">toggle</button>
+
+    <button onclick="$('h1').css('color','red')">Text rot</button>
+    <button onclick="$('h1').css('color','green')">Text grün</button>
+    <button onclick="$('h1').html('Haha')">Text ändern</button>
+    <button onclick="$('img').attr('src', '5.jpg')">Ziege</button>
+    <button onclick="$('img').attr('src', '4.jpgc')">Alpaka</button>
+    <div id="anzeige">0</div>
+    <script>
+        let click = 0;
+        $('img').click(function (){
+            click++
+            $('#anzeige').html(click)
+        })
+
+
+    </script>
+
+</body>
+</html>

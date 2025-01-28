@@ -130,3 +130,8 @@ router.get('/context', async ( ctx ) => {
 
     return ctx
 });
+router.get('/like/:id', async({params})=>{
+    const update = await db.from('posts').select('*').where('id',params.id).increment('like')
+    const number = await db.from('posts').select('*').where('id',params.id).first()
+    return JSON.stringify(number)
+})

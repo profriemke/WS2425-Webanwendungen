@@ -10,10 +10,21 @@
       @end  
     </p>
     <p>{{ text }}</p>
+    <p id="like">
+      ❤️ <span id='heart'>{{like}}</span>
+    </p>
     <a href="/">zurück</a>
     @if(session.get('login') != undefined)
         <a href="/admin/post/edit/{{id}}">editieren</a>
     @end
     @include('partials/footer')
+    <script>
+      $('#like').click(function(){
+        console.log('klick')
+        $.getJSON('/like/{{id}}', function (data){
+          $('#heart').html(data.like)
+        })
+      })
+    </script>
 </body>
 </html>
