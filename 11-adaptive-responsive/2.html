@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        nav ul{
+            padding:0px;
+            list-style: none;
+            display:flex;
+        }
+
+        nav ul li a{
+            width: 100px;
+            height:20px;
+            padding:5px;
+            display:block;
+            background-color: coral;
+            text-decoration: none;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color: white;
+        }
+        nav ul li a:hover{
+            background-color: rgb(239, 149, 116);
+        }
+        @media screen and (max-width:400px) {
+            nav ul{
+                flex-direction: column;
+            }
+            nav ul li a{
+                width: 100%;
+                padding:8px;
+                height: 30px;
+                font-size: 1.5em;
+                text-align: center;
+                border-bottom: 1px solid white;
+            }
+            img{
+                display: none;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Essen</a></li>
+            <li><a href="#">Trinken</a></li>
+            <li><a href="#">Events</a></li>
+        </ul>
+    </nav>
+    <img src="https://img.riemke.dev/5000/5000">
+    
+</body>
+</html>
